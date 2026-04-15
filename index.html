@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadania JavaScript</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background-color: #f4f4f4; }
+        .container { background: white; padding: 20px; border-radius: 8px; max-width: 800px; margin: auto; }
+        section { border-bottom: 1px solid #ddd; padding: 15px 0; }
+        input { padding: 5px; width: 60px; margin: 5px; }
+        button { padding: 5px 15px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 4px; }
+        .result { margin-top: 10px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <section>
+        <h2>1. x = a / b</h2>
+        <input type="number" id="1a"> / <input type="number" id="1b">
+        <button onclick="z1()">Oblicz</button>
+        <div id="r1" class="result"></div>
+    </section>
+
+    <section>
+        <h2>2. x = a/b + c/d</h2>
+        <input type="number" id="2a"> / <input type="number" id="2b"> + 
+        <input type="number" id="2c"> / <input type="number" id="2d">
+        <button onclick="z2()">Oblicz</button>
+        <div id="r2" class="result"></div>
+    </section>
+
+    <section>
+        <h2>3. x = (a+6) / (b-4)</h2>
+        ( <input type="number" id="3a"> + 6 ) / ( <input type="number" id="3b"> - 4 )
+        <button onclick="z3()">Oblicz</button>
+        <div id="r3" class="result"></div>
+    </section>
+
+    <section>
+        <h2>4. Czy parzysta?</h2>
+        <input type="number" id="4n">
+        <button onclick="z4()">Sprawdź</button>
+        <div id="r4" class="result"></div>
+    </section>
+
+    <section>
+        <h2>5. Czy a podzielne przez b?</h2>
+        <input type="number" id="5a"> / <input type="number" id="5b">
+        <button onclick="z5()">Sprawdź</button>
+        <div id="r5" class="result"></div>
+    </section>
+
+    <section>
+        <h2>6. Dodatnia, ujemna czy 0?</h2>
+        <input type="number" id="6n">
+        <button onclick="z6()">Sprawdź</button>
+        <div id="r6" class="result"></div>
+    </section>
+
+    <section>
+        <h2>7. Największa z trzech</h2>
+        <input type="number" id="7a"> <input type="number" id="7b"> <input type="number" id="7c">
+        <button onclick="z7()">Znajdź</button>
+        <div id="r7" class="result"></div>
+    </section>
+
+    <section>
+        <h2>8. Sortowanie rosnąco</h2>
+        <input type="number" id="8a"> <input type="number" id="8b"> <input type="number" id="8c">
+        <button onclick="z8()">Sortuj</button>
+        <div id="r8" class="result"></div>
+    </section>
+</div>
+
+<script>
+    function v(id) { return parseFloat(document.getElementById(id).value); }
+    function p(id, txt) { document.getElementById(id).innerText = txt; }
+
+    function z1() {
+        let a = v('1a'), b = v('1b');
+        if (b === 0) p('r1', "Błąd: b = 0");
+        else p('r1', "x = " + (a / b));
+    }
+
+    function z2() {
+        let a = v('2a'), b = v('2b'), c = v('2c'), d = v('2d');
+        if (b === 0 || d === 0) p('r2', "Błąd: mianownik = 0");
+        else p('r2', "x = " + (a / b + c / d));
+    }
+
+    function z3() {
+        let a = v('3a'), b = v('3b');
+        if (b - 4 === 0) p('r3', "Błąd: b-4 = 0");
+        else p('r3', "x = " + ((a + 6) / (b - 4)));
+    }
+
+    function z4() {
+        let n = v('4n');
+        p('r4', n % 2 === 0 ? "Parzysta" : "Nieparzysta");
+    }
+
+    function z5() {
+        let a = v('5a'), b = v('5b');
+        if (b === 0) p('r5', "Błąd: b = 0");
+        else p('r5', a % b === 0 ? "Tak" : "Nie");
+    }
+
+    function z6() {
+        let n = v('6n');
+        if (n > 0) p('r6', "Dodatnia");
+        else if (n < 0) p('r6', "Ujemna");
+        else p('r6', "Zero");
+    }
+
+    function z7() {
+        p('r7', "Największa: " + Math.max(v('7a'), v('7b'), v('7c')));
+    }
+
+    function z8() {
+        let arr = [v('8a'), v('8b'), v('8c')].sort((x, y) => x - y);
+        p('r8', "Wynik: " + arr.join(", "));
+    }
+</script>
+
+</body>
+</html>
